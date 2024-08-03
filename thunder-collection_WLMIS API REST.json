@@ -1,0 +1,40 @@
+{
+    "clientName": "Thunder Client",
+    "collectionName": "WLMIS API REST",
+    "collectionId": "89479e52-f9d6-46ea-a647-f11429e0385a",
+    "dateExported": "2024-08-03T23:33:34.558Z",
+    "version": "1.2",
+    "folders": [],
+    "requests": [
+        {
+            "_id": "5512b597-22d6-4c62-8a2e-a91e4ba7b533",
+            "colId": "89479e52-f9d6-46ea-a647-f11429e0385a",
+            "containerId": "",
+            "name": "Add a water level record",
+            "url": "http://localhost:5000/api/water-level",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2024-08-03T23:30:13.077Z",
+            "modified": "2024-08-03T23:30:42.981Z",
+            "headers": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"height\": 0.0,\n  \"percent\": 0.0\n}",
+                "form": []
+            }
+        },
+        {
+            "_id": "72d87c8b-7ac9-4004-9c97-6210d0cfb00b",
+            "colId": "89479e52-f9d6-46ea-a647-f11429e0385a",
+            "containerId": "",
+            "name": "Toggle sensor activated state",
+            "url": "http://localhost:5000/api/sensor-activated-state",
+            "method": "POST",
+            "sortNum": 20000,
+            "created": "2024-08-03T23:30:56.775Z",
+            "modified": "2024-08-03T23:31:20.024Z",
+            "headers": []
+        }
+    ],
+    "ref": "E_UARl44bnpNlnf60YoKhMbPc7J2lrEPUMSrNrnGoJzCkyccqy2jvCsH5VM9_iJC9KcHRb2L6ko5xZGmuWE5bw"
+}
