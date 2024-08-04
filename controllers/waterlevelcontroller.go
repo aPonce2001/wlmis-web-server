@@ -1,11 +1,13 @@
 package controllers
 
 import (
-	"github.com/aPonce2001/wlmis-web-server/data"
-	"github.com/aPonce2001/wlmis-web-server/models"
-	"github.com/gin-gonic/gin"
 	"net/http"
 	"time"
+
+	"github.com/aPonce2001/wlmis-web-server/data"
+	"github.com/aPonce2001/wlmis-web-server/models"
+	"github.com/aPonce2001/wlmis-web-server/websockets"
+	"github.com/gin-gonic/gin"
 )
 
 type addWaterLevelRecordJSON struct {
@@ -21,11 +23,14 @@ func AddWaterLevelRecord(context *gin.Context) {
 		return
 	}
 
-	data.AddWaterLevelRecord(models.WaterLevelRecord{
+	record := models.WaterLevelRecord{
 		Height:   newWaterLevelRecordJSON.Height,
 		Percent:  newWaterLevelRecordJSON.Percent,
 		DateTime: time.Now(),
-	})
+	}
+	data.AddWaterLevelRecord(record)
+
+	websockets.BroadcastWaterLevel(record)
 
 	context.IndentedJSON(http.StatusCreated, gin.H{"message": "Water level record added successfully"})
 }
