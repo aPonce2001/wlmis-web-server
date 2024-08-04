@@ -11,8 +11,9 @@ import (
 )
 
 type addWaterLevelRecordJSON struct {
-	Height  float64 `json:"height"`
-	Percent float64 `json:"percent"`
+	HeightCm float64 `json:"heightCm"`
+	VolumeMl float64 `json:"volumeMl"`
+	Percent  float64 `json:"percent"`
 }
 
 func AddWaterLevelRecord(context *gin.Context) {
@@ -24,8 +25,9 @@ func AddWaterLevelRecord(context *gin.Context) {
 	}
 
 	record := models.WaterLevelRecord{
-		Height:   newWaterLevelRecordJSON.Height,
+		HeightCm: newWaterLevelRecordJSON.HeightCm,
 		Percent:  newWaterLevelRecordJSON.Percent,
+		VolumeMl: newWaterLevelRecordJSON.VolumeMl,
 		DateTime: time.Now(),
 	}
 	data.AddWaterLevelRecord(record)

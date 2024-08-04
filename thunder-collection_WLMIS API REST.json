@@ -19,7 +19,7 @@
             "headers": [],
             "body": {
                 "type": "json",
-                "raw": "{\n  \"height\": 0.0,\n  \"percent\": 0.0\n}",
+                "raw": "{\n  \"heightCm\": 0.0,\n  \"volumeMl\": 0.0,\n  \"percent\": 0.0\n}",
                 "form": []
             }
         },

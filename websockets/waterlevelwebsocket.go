@@ -12,8 +12,9 @@ import (
 )
 
 type getWaterLevelRecordJSON struct {
-	Height   float64   `json:"height"`
+	HeightCm float64   `json:"heightCm"`
 	Percent  float64   `json:"percent"`
+	VolumeMl float64   `json:"volumeMl"`
 	DateTime time.Time `json:"dateTime"`
 }
 
@@ -38,7 +39,18 @@ func handleWaterLevelConnections(context *gin.Context) {
 	clientsWaterLevel[connection] = true
 	muWaterLevel.Unlock()
 
-	lastRecords := data.GetLastNWaterLevelRecords(20)
+	lastRecordsModel := data.GetLastNWaterLevelRecords(20)
+
+	var lastRecords []getWaterLevelRecordJSON
+	for _, record := range lastRecordsModel {
+		lastRecords = append(lastRecords, getWaterLevelRecordJSON{
+			HeightCm: record.HeightCm,
+			Percent:  record.Percent,
+			VolumeMl: record.VolumeMl,
+			DateTime: record.DateTime,
+		})
+	}
+
 	err = connection.WriteJSON(lastRecords)
 	if err != nil {
 		muWaterLevel.Lock()
@@ -86,8 +98,9 @@ func StartWaterLevelWebSocket(router *gin.Engine) {
 
 func BroadcastWaterLevel(record models.WaterLevelRecord) {
 	jsonRecord := getWaterLevelRecordJSON{
-		Height:   record.Height,
+		HeightCm: record.HeightCm,
 		Percent:  record.Percent,
+		VolumeMl: record.VolumeMl,
 		DateTime: record.DateTime,
 	}
 	broadcastWaterLevel <- jsonRecord
