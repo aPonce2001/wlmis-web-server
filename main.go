@@ -19,5 +19,5 @@ func main() {
 	routes.ConfigureRoutes(router)
 	websockets.StartWaterLevelWebSocket(router)
 	websockets.StartSensorWebSocket(router)
-	router.Run(":5000")
+	router.Run("0.0.0.0:5000")
 }
