@@ -21,6 +21,9 @@ type getWaterLevelRecordJSON struct {
 var upgraderWaterLevel = websocket.Upgrader{
 	ReadBufferSize:  1024,
 	WriteBufferSize: 1024,
+	CheckOrigin: func(r *http.Request) bool {
+		return true
+	},
 }
 
 var clientsWaterLevel = make(map[*websocket.Conn]bool)
